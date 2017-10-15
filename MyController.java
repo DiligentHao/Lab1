@@ -1,5 +1,5 @@
 package application;
-
+//c
 import java.awt.Desktop;
 
 import java.io.File;
@@ -29,8 +29,8 @@ import javafx.stage.Stage;
 
 
 public class MyController implements Initializable {
-	
-	//private Desktop desktop = Desktop.getDesktop(); 
+
+	//private Desktop desktop = Desktop.getDesktop();
 	@FXML
 	public static Graph myGraph;
 
@@ -42,7 +42,7 @@ public class MyController implements Initializable {
 	private Stage  newTEXT = new Stage();
 	@FXML
 	private Stage  ShortestPath = new Stage();
-	
+
 	@FXML
 	private Stage  randStage = new Stage();
 
@@ -56,12 +56,12 @@ public class MyController implements Initializable {
 	private TextArea shortOut;
 	@FXML
 	private TextField walkText;
-	
+
 
    @FXML
    private Button showGraph,searchBridge,newText,shorestPath,randWalk;
 
-   
+
 
 
    @Override
@@ -74,39 +74,39 @@ public class MyController implements Initializable {
    // When user click on myButton
    // this method will be called.
 
-   
+
    @FXML
    public void openFiles(ActionEvent event) throws IOException {  // 打开文件
 	   FileChooser fileChooser = new FileChooser();
        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
        fileChooser.getExtensionFilters().add(extFilter);
        File file = fileChooser.showOpenDialog(stageFile);
-       
+
        if (file != null) {
     	   showGraph.setVisible(true);
     	   searchBridge.setVisible(true);
     	   newText.setVisible(true);
     	   shorestPath.setVisible(true);
     	   randWalk.setVisible(true);
-    	   
+
    		Reader in = null;
-   		
+
    		in = new FileReader(file);
-   		
+
    		char[] temp = new char[2000];
    		int i  = in.read(temp);
-   		
-   		
+
+
    		in.close();
-   		
+
    		String temp_string = new String(temp,0,i);
    		temp_string = temp_string.toLowerCase();
-   		
+
    		String[] a = temp_string.split("[^a-zA-Z]+");
    		myGraph = new Graph();
-   		
+
    		myGraph.readGraph(a);
-    	   
+
 
        }
        else
@@ -117,22 +117,22 @@ public class MyController implements Initializable {
     	   newText.setVisible(false);
     	   shorestPath.setVisible(false);
     	   randWalk.setVisible(false);
-    	   
+
        }
 
-	   
+
    }
    @FXML
    public void exit(ActionEvent event) {   // 退出按钮事件
-	   
+
 	   System.exit(0);
    }
-   
+
    @FXML
    public void showGraph(ActionEvent event)// 展示按钮事件
    {
 	  myGraph.showDirectedGraph();
-	   
+
 	   try {
 		    Desktop.getDesktop().open(new File("GRAPH1.jpg"));
 		} catch (IOException e1) {
@@ -140,7 +140,7 @@ public class MyController implements Initializable {
 			e1.printStackTrace();
 		}
    }
-   
+
    @FXML
    public void searchBridge(ActionEvent event) // 打开查询桥接词界面
    {
@@ -154,18 +154,18 @@ public class MyController implements Initializable {
 		Scene myScene = new Scene(myPane);
 		stageSearchBridge.setScene(myScene);
 		stageSearchBridge.show();
-   
+
    }
-   
+
    @FXML
    public void Search(ActionEvent event) { // 查询按钮
-	   
+
 	   String xString  = myGraph.queryBridgeWords(bridgeWord1.getText(), bridgeWord2.getText());
-	   
+
 	   bridgeOut.setText(xString);
    }
-   
-   
+
+
    @FXML
    public void newText(ActionEvent event) // 生成新文本窗口
    {
@@ -187,8 +187,8 @@ public class MyController implements Initializable {
 	   String xString  =  myGraph.generateNewText(inText.getText());
 	   outText.setText(xString);
    }
-   
-   
+
+
    @FXML
    public void shortestPath(ActionEvent event) // 生成对短路径窗口
    {
@@ -226,10 +226,10 @@ public class MyController implements Initializable {
 	   else
 	   {
 		   shortOut.setText("We dont support from all to word2 path!");
-	   }  
+	   }
    }
 
-   
+
    @FXML
    public void randWalk(ActionEvent event)  // 随机游走窗口
    {
@@ -240,30 +240,30 @@ public class MyController implements Initializable {
  		} catch (IOException e) {
  			e.printStackTrace();
  		}
- 		
- 		
+
+
  		Scene myScene = new Scene(myPane);
  		randStage.setScene(myScene);
  		randStage.show();
- 		
+
  		 String xString = myGraph.randomWalk();
- 		 
+
  		 wwalk  = xString.split(" ");
  		 ww = 0;
    }
-   
+
    @FXML
    public static String wwalk[];
    @FXML
    public static int ww = 0;
-   
+
    @FXML
    public void Walk(ActionEvent event)  // 游走按钮事件
    {
-	  
+
 	   if(ww < wwalk.length)
 	   {
-		   
+
 		   String xString = "";
 		   for(int i = 0;i<=ww;i++)
 		   {
@@ -275,7 +275,7 @@ public class MyController implements Initializable {
 				   xString = xString +" "  + wwalk[i];
 		   }
 		   ww++;
-		   
+
 		   walkText.setText(xString);
 	   }
 	   else
@@ -296,7 +296,7 @@ public class MyController implements Initializable {
 			   xString = xString +" "  + wwalk[i];
 	   }
 	   xString += "\r\n";
-	   
+
 	   try {
 		   File file = new File("randWalk.txt");
 		   if(!file.exists())
@@ -306,7 +306,7 @@ public class MyController implements Initializable {
 		   Writer fileWritter = new FileWriter(file,true);
 		   fileWritter.write(xString);
 		   fileWritter.close();
-		
+
 	   } catch (IOException e) {
 		e.printStackTrace();
 		// TODO: handle exception
@@ -321,39 +321,39 @@ public class MyController implements Initializable {
 
 class Constant
 {
-	public static final int INfINITE = 100000; 
-	
+	public static final int INfINITE = 100000;
+
 }
 
 class Graph
 {
 
-    private int V = 0;  // 节点个数 
+    private int V = 0;  // 节点个数
 	private int E = 0;  // 边个数
-	
+
 	private HashMap<String, Integer> vexToInt;  // 单词映射到对应的节点下标
-	
+
 	private Vertex[] vertexs;                   // 顶点数组
 	private Edge[] edges;                       // 边数组
-	
+
 	private int[][] D;                          // Floyd算法距离矩阵
 	private String [][] P;						// Floyd算法最短路径矩阵
-	
+
 	private Stack<String> stack_p = new Stack<String>();  // 栈（字符串类型）
-	
-	
+
+
 	class Vertex								// 顶点结构体
 	{
 		String ver;                             // 单词
 		LinkedList<Edge> edge;                  // 边链表
-		
+
 		public Vertex()
 		{
 			ver = "";
 			edge = new LinkedList<Edge>();
 		}
 	}
-	
+
 	class Edge                                  // 边结构体
 	{
 		String start_edge = "";
@@ -362,20 +362,20 @@ class Graph
 	}
 
 	public void readGraph(String[] readin)      //生成图算法
-	{	
+	{
 		vexToInt = new HashMap<String, Integer>();
 		edges = new Edge[readin.length];
-		
+
 		for(int i = 0;i<readin.length;i++)       // 边初始化
 		{
 			edges[i] = new Edge();
 		}
-		
+
 		for(int i = 0;i+1<readin.length;i++)     // 读取边
 		{
 			String title = readin[i];
 			String last = readin[i+1];
-		
+
 			int flag;
 			flag = 0;
 			for(int j = 0;j<E;j++)                // 已有边加权值
@@ -394,9 +394,9 @@ class Graph
 				edges[E].weight = 1;
 				E++;
 			}
-		
+
 		}
-		
+
 		for(int i = 0;i<readin.length;i++)          // 单词映射顶点下标Hashmap初始化
 		{
 			vexToInt.put(readin[i],-1);
@@ -409,22 +409,22 @@ class Graph
 		}
 		V = value;
 		vertexs = new Vertex[value];
-		
 
-		
+
+
 		D = new int[V][V];
 		P = new String[V][V];
-		
+
 
 		//************为了防止用户不调用Floyd算法就使用最短距离算法，
 		//************故在生成图时调用弗洛伊德算法，将矩阵生成
-		
+
 		for(String key:vexToInt.keySet())          // 距离矩阵D和路径矩阵P初始化
 		{
 			int i = vexToInt.get(key);
 			vertexs[i] = new Vertex();
 			vertexs[i].ver = key;
-			
+
 			D[i] = new int[V];
 			P[i] = new String[V];
 			for(int j = 0;j<V;j++)
@@ -432,21 +432,21 @@ class Graph
 				D[i][j] = Constant.INfINITE;
 				P[i][j] = "";
 			}
-			
-			
+
+
 		}
-		
-		
+
+
 		for(int i = 0;i<E;i++)                      // 将边加入对应顶点边链表
 		{
 			int j = vexToInt.get(edges[i].start_edge);
 			vertexs[j].ver = edges[i].start_edge;
 			vertexs[j].edge.add(edges[i]);
-	
-			
+
+
 			D[vexToInt.get(edges[i].start_edge)][vexToInt.get(edges[i].end_edge)] = edges[i].weight;
 		}
-		
+
 		for(String k:vexToInt.keySet())            // Floyd算法
 		{
 			for(String i:vexToInt.keySet())
@@ -464,29 +464,29 @@ class Graph
 					}
 				}
 			}
-		}	
+		}
 	}
-	
+
 	public void showDirectedGraph() {         // 展示图算法
 		GraphViz gV = new GraphViz();
 		String adj;
-		
+
 		gV.addln(gV.start_graph());
-		
+
 		for(int j = 0;j<E;j++)
 		{
 			adj = edges[j].start_edge + "->" + edges[j].end_edge +"[label=\"" +  edges[j].weight +"\"]";
 			gV.addln(adj);
 		}
 		gV.addln(gV.end_graph());
-		
-		
+
+
 		File file = new File("GRAPH1.jpg");  // 生成.jpg
 		gV.writeGraphToFile(gV.getGraph(gV.getDotSource(), "jpg"), file);
-		
-		
+
+
 	}
-	
+
 	/**********************************************************
 	 * 由于课程要求的queryBridgeWords和generateNewText都需要桥接词             *
 	 * 所以将重复代码整合为bridgeWords旨在生成桥接词，便于桥接词的查询，生成新文本 *
@@ -499,7 +499,7 @@ class Graph
 		LinkedList<Edge> startLink = vertexs[word_index].edge;
 		Stack<String> maybridge = new Stack<String>();
 		Stack<String> wholebridge = new Stack<String>();
-		
+
 		for(Edge edge:startLink)
 		{
 			maybridge.push(edge.end_edge);
@@ -508,7 +508,7 @@ class Graph
 		{
 			int maybrige_index = vexToInt.get(maybridge.pop()); // 将他出栈
 			LinkedList<Edge> bridgeLink = vertexs[maybrige_index].edge;
-			
+
 			for(Edge end:bridgeLink)                // 遍历可能桥接词的边，如果有end_edge为word2的，说明可能桥接词为真的桥接词，将其如wholebridge栈
 			{
 				if(end.end_edge.equals(word2))
@@ -517,7 +517,7 @@ class Graph
 				}
 			}
 		}
-		
+
 		while(!wholebridge.empty())              // 全部桥接词wholebridge不为空，出栈
 		{
 			String temp = wholebridge.pop();
@@ -528,11 +528,11 @@ class Graph
 			else
 			{
 				brigewords = brigewords + temp +".";
-			}	
+			}
 		}
 		return brigewords;                       // 返回桥接词
 	}
-	
+
 	public String queryBridgeWords(String word1,String word2) // 查询桥接词
 	{
 		String outputString = "";
@@ -541,7 +541,7 @@ class Graph
 			String bridgeWord = bridgeWords(word1, word2); // 调用生成桥接词算法
 			if(bridgeWord.equals(""))
 			{
-				outputString = "No bridge words from " +word1 +" to " +word2+" !";	
+				outputString = "No bridge words from " +word1 +" to " +word2+" !";
 			}
 			else
 			{
@@ -554,13 +554,13 @@ class Graph
 		}
 		return outputString;
 	}
-	
-	
+
+
 	public String generateNewText(String inputText) // 生成新文本
 	{
 		String outputText ="";
 		String[] splitText = inputText.toLowerCase().split("[^a-zA-Z]+");// 分割新文本
-		
+
 		int i = 0;
 		for(;i+1<splitText.length;i++)            // 遍历新文本
 		{
@@ -569,21 +569,21 @@ class Graph
 			if(vexToInt.containsKey(splitText[i]) && vexToInt.containsKey(splitText[i+1]))
 			{
 				String bridgeWords = bridgeWords(splitText[i],splitText[i+1]);
-				
+
 				if(!bridgeWords.equals(""))
 				{
 					String[] temp = bridgeWords.split("[^a-zA-Z]+");
-					
+
 					Random for_insert = new Random();
 					int insert_index = for_insert.nextInt(temp.length);
-					
+
 
 					outputText = outputText + temp[insert_index]+" ";
 				}
 			}
 		}
 		outputText = outputText + splitText[i];
-		
+
 		return outputText;
 	}
 	/**********************************
@@ -593,14 +593,14 @@ class Graph
 	 * calcShortestPath是查询两个点之间的最短路径
 	 * 由于最短路径算法对于单源和指定的点对是重复部分，故写shortestPath函数来简化代码
 	 */
-	
-	
+
+
 	private String shortestPath(String start,String end)// 生成一条最短路径
 	{
 		String outt = "";
 		int i = vexToInt.get(start);
 		int j = vexToInt.get(end);
-		
+
 		if(P[i][j].equals(""))
 		{
 			return "";
@@ -617,8 +617,8 @@ class Graph
 			return outt;
 		}
 	}
-	
-	
+
+
 	public String f_to_one(String start) // 单源最短路径
 	{
 		String outt= "";
@@ -646,7 +646,7 @@ class Graph
 				String temp = shortestPath(word1,word2);
 				outt = word1 +"->" + temp + word2 +
 						"\nThe length of path is "+D[vexToInt.get(word1)][vexToInt.get(word2)]+"\n";
-			}	
+			}
 		}
 		else
 		{
@@ -654,23 +654,23 @@ class Graph
 		}
 		return outt;
 	}
-	
+
 	public String randomWalk()//随机游走
 	{
 		String outt = "";
-		
+
 		HashMap<Edge, Boolean> visit = new HashMap<Edge,Boolean>();// 边是否遍历过，初始化false
 		for(int j = 0;j<E;j++)
 		{
 			visit.put(edges[j], false);
 		}
-		
+
 
 		Random r1 = new Random();
 		int x = r1.nextInt(V);
 		String start = vertexs[x].ver ;
         stack_p.push(start);          //随机一个点起手
-        
+
         outt = start;
 		LinkedList<Edge> p;
 
@@ -681,24 +681,24 @@ class Graph
 			{
 				int j = r1.nextInt(p.size());
 				Edge edge = p.get(j);
-				
+
 				outt  = outt + " " + edge.end_edge;
 				if(!visit.get(edge)) // 重复的边
 				{
-				   
+
 					visit.replace(edge, true);
-					
+
 					stack_p.push(edge.end_edge);
 				}
-				
-				
+
+
 			}
 		}
 		return outt;
 	}
-	
-	
-	
-   
+
+
+
+
 }
 
