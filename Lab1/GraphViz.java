@@ -3,7 +3,7 @@
 /*
  ******************************************************************************
  *                                                                            *
- *              (c) Copyright 2003 Laszlo Szathmary                           *
+ *              (c) Copyright 2017 Laszlo Szathmary                           *
  *                                                                            *
  * This program is free software; you can redistribute it and/or modify it    *
  * under the terms of the GNU Lesser General Public License as published by   *
@@ -22,15 +22,6 @@
  ******************************************************************************
  */
 package application;
-//This is a change.
-
-//B2 change
-
-
-//B1 change
-
-//C4 change
-//partner change
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
